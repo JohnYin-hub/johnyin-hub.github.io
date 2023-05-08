@@ -1,0 +1,308 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>各种相似距离 | JohnYin</title>
+<link rel="shortcut icon" href="https://johnyin-hub.github.io//favicon.ico?v=1683505903280">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://johnyin-hub.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="各种相似距离 | JohnYin - Atom Feed" href="https://johnyin-hub.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="余弦相似度 cosine similarity
+向量a ，b的余弦相似度
+a⋅b=a\cdot b =
+a⋅b=
+
+
+# numpy
+import numpy as np
+vec1 = np.array([1, 2, 3, 4])
+vec2..." />
+    <meta name="keywords" content="相似度" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://johnyin-hub.github.io/">
+  <img class="avatar" src="https://johnyin-hub.github.io//images/avatar.png?v=1683505903280" alt="">
+  </a>
+  <h1 class="site-title">
+    JohnYin
+  </h1>
+  <p class="site-description">
+    看代码、看论文、看乐谱真挺无聊，还是好好看看身边人有意思
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="心路记忆" class="menu">
+          心路记忆
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              各种相似距离
+            </h2>
+            <div class="post-info">
+              <span>
+                2023-02-08
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+                <a href="https://johnyin-hub.github.io/tag/0uja5J42W/" class="post-tag">
+                  # 相似度
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <h1 id="余弦相似度-cosine-similarity">余弦相似度 cosine similarity</h1>
+<p>向量a ，b的余弦相似度</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>⋅</mo><mi>b</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">a\cdot b =
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span></span></p>
+<img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/image-20230310110307134.png" alt="image-20230310110307134" style="zoom:33%;" />
+<img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/image-20230310110329588.png" alt="image-20230310110329588" style="zoom:50%;" />
+<pre><code class="language-python"># numpy
+import numpy as np
+vec1 = np.array([1, 2, 3, 4])
+vec2 = np.array([5, 6, 7, 8])
+
+cos_sim = vec1.dot(vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
+print(cos_sim)
+
+#scipy
+from scipy import spatial
+vec1 = [1, 2, 3, 4]
+vec2 = [5, 6, 7, 8]
+cos_sim = 1 - spatial.distance.cosine(vec1, vec2)
+print(cos_sim)
+
+#torch
+import torch
+import torch.nn.functional as F
+
+vec1 = torch.FloatTensor([1, 2, 3, 4])
+vec2 = torch.FloatTensor([5, 6, 7, 8])
+
+cos_sim = F.cosine_similarity(vec1, vec2, dim=0)
+print(cos_sim) 
+</code></pre>
+<h1 id="汉明距离-hamming-distance">汉明距离 Hamming distance</h1>
+<p>在<a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E8%AE%BA">信息论</a>中，两个等长<a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a>之间的<strong>汉明距离</strong>（英语：Hamming distance）是两个字符串对应位置的不同字符的个数。换句话说，它就是将一个字符串变换成另外一个字符串所需要<em>替换</em>的字符个数。</p>
+<p>**<a href="https://zh.wikipedia.org/wiki/%E6%B1%89%E6%98%8E%E9%87%8D%E9%87%8F">汉明重量</a>**是字符串相对于同样长度的零字符串的汉明距离，也就是说，它是字符串中非零的元素个数：对于<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%BF%9B%E5%88%B6">二进制</a><a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a>来说，就是1的个数，所以11101的汉明重量是4。</p>
+<pre><code class="language-python"> def Hamming_similarity(hash1,hash2): 
+     num = 0
+     for index in range(len(hash1)): 
+         if hash1[index] != hash2[index]: 
+             num += 1
+     similarity = 1 - (num * 1.0) / (137*35) 
+     return similarity
+</code></pre>
+<h1 id="编辑距离-levenshtein">编辑距离 Levenshtein</h1>
+<p>编辑距离,也叫莱文斯坦距离(Levenshtein),是针对二个<a href="https://link.zhihu.com/?target=https%3A//baike.baidu.com/item/%E5%AD%97%E7%AC%A6%E4%B8%B2">字符串</a>（例如英文字）的差异程度的量化量测，量测方式是看至少需要多少次的处理才能将一个字符串变成另一个字符串。</p>
+<img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/image-20230323111842668.png" alt="image-20230323111842668" style="zoom:50%;" />
+<pre><code class="language-python"># 构建二维距离矩阵动态求解
+class Solution:
+    def minDistance(self, word1: str, word2: str) -&gt; int:
+
+        m, n = len(word1), len(word2)
+        if m * n == 0:      # word1或word2为空 
+            return m + n
+        
+        dp = [[0]*(n+1) for _ in range(m+1)]
+
+        # 边界状态
+        for i in range(1, m+1):
+            dp[i][0] = i
+        for j in range(1, n+1):
+            dp[0][j] = j
+
+        # 状态更新
+        for i in range(1, m+1):
+            for j in range(1, n+1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                else:
+                    dp[i][j] = min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1]) + 1
+        
+        return dp[m][n]
+</code></pre>
+<pre><code class="language-python"># 使用一维的滚动数组求解
+class Solution:
+    def minDistance(self, word1: str, word2: str) -&gt; int:
+
+        m, n = len(word1), len(word2)
+        if m * n == 0:
+            return m + n
+        
+        dp = [0] * (n+1)
+
+        # 边界状态
+        for j in range(1, n+1):
+            dp[j] = j
+        
+        # 状态更新
+        for i in range(1, m+1):
+            dp2 = [0] * (n+1)   # 滚动数组
+            dp2[0] = i
+            for j in range(1, n+1):
+                if word1[i-1] == word2[j-1]:
+                    dp2[j] = dp[j-1]
+                else:
+                    dp2[j] = min(dp2[j-1]+1, dp[j]+1, dp[j-1]+1)
+            dp = dp2        # 滚动数组
+            
+        return dp[n]
+
+</code></pre>
+<h1 id="杰卡德距离-jaccard-similarity">杰卡德距离 Jaccard similarity</h1>
+<p>给定两个集合A,B，Jaccard 系数定义为A与B交集的大小与A与B并集的大小的比值，定义如下：</p>
+<figure data-type="image" tabindex="1"><img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/8ef3fad30cdb2d41ff1fe82d54bacbf6-20230504142148693.svg" alt="img" loading="lazy"></figure>
+<p>当集合A，B都为空时，J(A,B)定义为1。</p>
+<p>与Jaccard 系数相关的指标叫做Jaccard 距离，用于描述集合之间的不相似度。Jaccard 距离越大，样本相似度越低。公式定义如下：</p>
+<figure data-type="image" tabindex="2"><img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/bf43d7abc9dedf0a963f752a2e544ef5-20230504142148709.svg" alt="img" loading="lazy"></figure>
+<p>其中对称差（symmetric difference）</p>
+<figure data-type="image" tabindex="3"><img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/27bf5aadc0f6d9c1bd292101732038ed-20230504142148723.svg" alt="img" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/fc235100e0242564eb9bd853fa9ed556-20230504142148739.svg" alt="img" loading="lazy"></figure>
+<pre><code class="language-python"># Jaccard similarity coefficient
+def jaccard_similarity(x, y):
+    intersection_cardinality = len(set.intersection(*[set(x), set(y)]))
+    union_cardinality = len(set.union(*[set(x), set(y)]))
+    return intersection_cardinality / float(union_cardinality)
+</code></pre>
+<p>广义Jaccard系数</p>
+<p>（1）给定两个n维向量 则 Jaccard 系数定义如下：</p>
+<figure data-type="image" tabindex="5"><img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/4666556e10f2290fc7f3951238b41d89.svg" alt="img" loading="lazy"></figure>
+<p>（2）给定两个关于 的非负函数 <strong>f</strong> 和 <strong>g</strong> ，则 Jaccard 系数定义如下：</p>
+<figure data-type="image" tabindex="6"><img src="https://johnyin.oss-cn-shanghai.aliyuncs.com/uPic/cef13809ac0da8b772f32b7858f578db.svg" alt="img" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E4%BD%99%E5%BC%A6%E7%9B%B8%E4%BC%BC%E5%BA%A6-cosine-similarity">余弦相似度 cosine similarity</a></li>
+<li><a href="#%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB-hamming-distance">汉明距离 Hamming distance</a></li>
+<li><a href="#%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB-levenshtein">编辑距离 Levenshtein</a></li>
+<li><a href="#%E6%9D%B0%E5%8D%A1%E5%BE%B7%E8%B7%9D%E7%A6%BB-jaccard-similarity">杰卡德距离 Jaccard similarity</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://johnyin-hub.github.io/post/liao-yi-liao-dui-kang-xun-lian/">
+              <h3 class="post-title">
+                聊一聊对抗训练
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  你我皆凡人，终日奔波苦
+  <a class="rss" href="https://johnyin-hub.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

